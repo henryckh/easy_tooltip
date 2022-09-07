@@ -38,10 +38,18 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               EasyTooltip(
-                content: 'hello world',
-                child: Icon(Icons.info_outlined),
+                text: 'hello world!',
+                backgroundColor: const Color(0xFF385E9D),
+                padding: const EdgeInsets.all(8),
+                onEasyTooltipTap: () {
+                  debugPrint('child is tapped.');
+                },
+                onDismiss: () {
+                  debugPrint('tooltip is dismissed');
+                },
+                child: const Icon(Icons.info_outlined),
               ),
             ],
           ),
