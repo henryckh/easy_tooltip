@@ -5,9 +5,10 @@ import 'package:easy_tooltip/src/painter/triangle_painter.dart';
 import 'package:flutter/material.dart';
 
 class TooltipOverlay {
-  final double popupWidth = 200;
-  final double popupHeight = 200;
-  final double arrowHeight = 10.0;
+  // growth width of the bubble
+  final double bubbleWidth;
+  final double bubbleHeight;
+  final double arrowHeight;
   bool _isDownArrow = false;
   bool _isVisible = false;
 
@@ -23,21 +24,20 @@ class TooltipOverlay {
   final BorderRadius borderRadius;
   final Color backgroundColor;
 
-  VoidCallback? dismissCallback;
   VoidCallback? onDismiss;
 
   TooltipOverlay(
     this.context, {
-    double height = 35,
-    double width = 180,
-    VoidCallback? dismissCallback,
-    VoidCallback? onDismiss,
+    required this.text,
     this.textStyle = const TextStyle(
         fontWeight: FontWeight.normal, color: Color(0xFF000000)),
     this.borderRadius = const BorderRadius.all(Radius.circular(10.0)),
     required this.backgroundColor,
-    required this.text,
     this.padding = const EdgeInsets.all(4.0),
+    this.bubbleWidth = 200,
+    this.bubbleHeight = 200,
+    this.arrowHeight = 10.0,
+    this.onDismiss,
   });
 
   void show({Rect? rect, required GlobalKey widgetKey}) {
@@ -66,17 +66,17 @@ class TooltipOverlay {
   }
 
   Offset _calculateOffset(BuildContext context) {
-    double dx = showRect.left + showRect.width / 2.0 - popupWidth / 2.0;
+    double dx = showRect.left + showRect.width / 2.0 - bubbleWidth / 2.0;
     if (dx < 10.0) {
       dx = 10.0;
     }
 
-    if (dx + popupWidth > screenSize.width && dx > 10.0) {
-      double tempDx = screenSize.width - popupWidth - 10;
+    if (dx + bubbleWidth > screenSize.width && dx > 10.0) {
+      double tempDx = screenSize.width - bubbleWidth - 10;
       if (tempDx > 10) dx = tempDx;
     }
 
-    double dy = showRect.top - popupHeight;
+    double dy = showRect.top - bubbleHeight;
     dy = arrowHeight + showRect.height + showRect.top + 4;
     _isDownArrow = false;
 
@@ -99,7 +99,7 @@ class TooltipOverlay {
               Positioned(
                 left: showRect.left + showRect.width / 2.0 - 7.5,
                 top: _isDownArrow
-                    ? offset.dy + popupHeight
+                    ? offset.dy + bubbleHeight
                     : offset.dy - arrowHeight,
                 child: CustomPaint(
                   size: Size(15.0, arrowHeight),
@@ -112,7 +112,7 @@ class TooltipOverlay {
                   left: offset.dx,
                   top: offset.dy,
                   child: SizedBox(
-                    width: popupWidth,
+                    width: bubbleWidth,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -143,6 +143,6 @@ class TooltipOverlay {
     }
     entry.remove();
     _isVisible = false;
-    dismissCallback?.call();
+    onDismiss?.call();
   }
 }
