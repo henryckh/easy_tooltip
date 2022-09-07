@@ -1,5 +1,5 @@
 name: easy_tooltip
-description: Flutter library to create simple tooltip.
+description: Flutter library to create simple tooltip, now only support mobile/web to provide a popup style bubble. An easy to integrate flutter library to create modern tooltip with customized content. Mobile supported tooltip allows you to dislay text popup with a transparent overlay and dimiss the bubble by tapping anywhere of the screen. Compatible to flutter web but hover feature is not yet suppored.
 version: 0.1.0
 homepage: https://github.com/henryckh/easy_tooltip
 
