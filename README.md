@@ -1,4 +1,4 @@
-# Easy tooltip
+# easy_tooltip
 
 An easy to integrate flutter library to create modern tooltip with customized content.
 Mobile supported tooltip allows you to dislay text popup with a transparent overlay and dimiss the bubble by tapping anywhere of the screen. Compatible to flutter web but hover feature is not yet suppored. 
