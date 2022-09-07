@@ -1,7 +1,7 @@
 name: easy_tooltip
-description: A new Flutter package project.
+description: Flutter library to create simple tooltip.
 version: 0.0.1
-homepage:
+homepage: https://github.com/henryckh/easy_tooltip
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
