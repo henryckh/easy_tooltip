@@ -1,6 +1,6 @@
 name: easy_tooltip
 description: Flutter library to create simple tooltip.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/henryckh/easy_tooltip
 
 environment:
